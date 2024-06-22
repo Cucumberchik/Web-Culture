@@ -1,0 +1,110 @@
+:root {
+  //Green
+  --color-green-main: rgb(16, 185, 129);
+  --color-green-dark: rgb(44, 156, 106);
+  --color-green-textShadow: rgba(38, 111, 78, 0.5);
+  --color-green-buttonText: rgb(36, 180, 126);
+  --color-green-buttonBackround: rgba(44, 156, 106, 0.25);
+  --color-green-inputBackground: rgb(62, 207, 142);
+  --color-green-inputBorder: rgb(159, 231, 199);
+
+  //Gray
+  --color-gray-text: rgb(224, 224, 224);
+  --color-gray-textSecandary: rgb(135, 135, 135);
+  --color-gray-textBackground: rgba(150, 150, 150, 0.1);
+  --color-gray-buttonText: rgb(187, 187, 187);
+  --color-gray-666666: rgb(102, 102, 102);
+  --color-gray-codeBorder: rgba(100, 100, 100, 0.2);
+  --color-gray-codeBackground: rgba(150, 150, 150, 0.1);
+  --color-gray-inputBorder: rgb(68, 68, 68);
+
+  //Black
+  --color-black-main: rgb(31, 31, 31);
+  --color-black-buttonBorder: rgb(42, 42, 42);
+
+  //White
+  --color-white: rgb(255, 255, 255);
+
+  //Yellow
+  --color-yellow: rgb(255, 229, 143);
+
+  //Red
+  --color-red: rgb(239, 68, 68);
+
+  //Orange
+  --color-orange: rgb(245, 158, 11);
+
+  --colors-gray-dark-300: 0deg 0% 13.7%;
+  --colors-gray-dark-600: 0deg 0% 20.4%;
+}
+:root {
+  --border-default: var(--colors-gray-dark-600);
+  --background-surface-100: var(--colors-gray-dark-300);
+  --background-200: 0deg 0% 11%;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+
+    --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
+    --secondary-glow: linear-gradient(
+      to bottom right,
+      rgba(1, 65, 255, 0),
+      rgba(1, 65, 255, 0),
+      rgba(1, 65, 255, 0.3)
+    );
+
+    --tile-start-rgb: 2, 13, 46;
+    --tile-end-rgb: 2, 5, 19;
+    --tile-border: conic-gradient(
+      #ffffff80,
+      #ffffff40,
+      #ffffff30,
+      #ffffff20,
+      #ffffff10,
+      #ffffff10,
+      #ffffff80
+    );
+
+    --callout-rgb: 20, 20, 20;
+    --callout-border-rgb: 108, 108, 108;
+    --card-rgb: 100, 100, 100;
+    --card-border-rgb: 200, 200, 200;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
