@@ -1,0 +1,37 @@
+.header {
+  width: 100%;
+  backdrop-filter: blur(4px);
+  background: hsl(var(--background-200));
+  border-bottom: 1px solid hsl(var(--border-default));
+
+  nav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    gap: 20px;
+
+    p {
+        font-weight: 500;
+    }
+
+    a {
+      color: var(--color-gray-text);
+      transition: 0.1s;
+    }
+
+    .head_logo {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .link {
+      font-size: 14px;
+
+      &:hover {
+        color: var(--color-green-inputBackground);
+      }
+    }
+  }
+}
