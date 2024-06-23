@@ -4,7 +4,7 @@ import { NextPage } from "next";
 import Link from "next/link";
 import { ReactNode, useEffect } from "react";
 
-const CheckUser: NextPage = ({ scss }: any): ReactNode => {
+const CheckUser: NextPage<{scss:any}> = ({ scss }): ReactNode => {
   const { checkUser, user } = useUser();
   useEffect(checkUser, []);
   console.log(user);
