@@ -10,7 +10,7 @@ import { auth, googleProvider } from "@/firebase/configure";
 import { signInWithRedirect } from "firebase/auth";
 
 const AuthenticationPage: NextPage = (): ReactNode => {
-  const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState<number>(0);
 
   const handleResize = () => {
     setWindowWidth(window.innerWidth);

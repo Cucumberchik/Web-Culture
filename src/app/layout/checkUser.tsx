@@ -7,7 +7,6 @@ import { ReactNode, useEffect } from "react";
 const CheckUser: NextPage<{scss:any}> = ({ scss }): ReactNode => {
   const { checkUser, user } = useUser();
   useEffect(checkUser, []);
-  console.log(user);
 
   return user == null ? (
     <Link
