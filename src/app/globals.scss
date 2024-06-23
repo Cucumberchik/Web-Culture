@@ -34,14 +34,35 @@
   //Orange
   --color-orange: rgb(245, 158, 11);
 
+  --colors-gray-dark-100: 0deg 0% 8.6%;
   --colors-gray-dark-300: 0deg 0% 13.7%;
+  --colors-gray-dark-400: 0deg 0% 15.7%;
   --colors-gray-dark-600: 0deg 0% 20.4%;
+  --colors-gray-dark-700: 0deg 0% 24.3%;
+  --colors-gray-dark-800: 0deg 0% 31.4%;
+  --colors-gray-dark-1200: 0deg 0% 92.9%;
+
+  --brand-500: 153.5deg 61.8% 21.6%;
+  --brand-default: 153.1deg 60.2% 52.7%;
 }
 
 :root {
+  --border-radius-button-md: 0.375rem;
   --border-default: var(--colors-gray-dark-600);
+  --border-strong: var(--colors-gray-dark-700);
+  --border-stronger: var(--colors-gray-dark-800);
+
   --background-surface-100: var(--colors-gray-dark-300);
   --background-200: 0deg 0% 11%;
+  --background-muted: var(--colors-gray-dark-400);
+  --background-alternative-default: var(--colors-gray-dark-100);
+
+  --foreground-default: var(--colors-gray-dark-1200);
+
+  --gap-5: 1.25rem;
+  --gap-4: 1rem;
+  --gap-3: 0.75rem;
+  --gap-2: 0.5rem;
 }
 
 * {
@@ -64,4 +85,9 @@ a {
 
 body {
   background: hsl(var(--background-200));
+}
+
+a,
+button {
+  cursor: pointer;
 }
