@@ -8,6 +8,7 @@ import telgram from "@/icons/telegram.svg";
 import vk from "@/icons/vk.svg";
 import { auth, googleProvider } from "@/firebase/configure";
 import { signInWithRedirect } from "firebase/auth";
+import { LoginButton } from "@telegram-auth/react";
 
 const AuthenticationPage: NextPage = (): ReactNode => {
   const [windowWidth, setWindowWidth] = useState<number>(0);
@@ -26,6 +27,9 @@ const AuthenticationPage: NextPage = (): ReactNode => {
   const handleGoogleAuth = () => {
     signInWithRedirect(auth, googleProvider);
   };
+
+  const botName: any = process.env.NEXT_PUBLIC_API_BOT_NAME;
+  console.log(botName);
 
   return (
     <main className={scss.auth}>
@@ -58,6 +62,15 @@ const AuthenticationPage: NextPage = (): ReactNode => {
                 />
                 Продолжить в VK
               </button>
+              <LoginButton
+                botUsername={botName}
+                authCallbackUrl="/"
+                buttonSize="large" // "large" | "medium" | "small"
+                cornerRadius={5} // 0 - 20
+                showAvatar={true} // true | false
+                
+                lang="ru"
+              />
             </div>
           </div>
           {windowWidth >= 500 ? (
