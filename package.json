@@ -3,16 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "PORT=80 next dev",
+    "start:dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@telegram-auth/react": "^1.0.3",
+    "@vkid/sdk": "^1.1.0",
     "axios": "^1.7.2",
     "firebase": "^10.12.2",
     "next": "14.2.4",
+    "prop-types": "^15.8.1",
     "react": "^18",
     "react-dom": "^18",
     "sass": "^1.77.6",
