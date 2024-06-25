@@ -6,8 +6,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
 import success from "@/icons/success.svg";
 import spiner from "@/icons/spiner.svg";
+import { Suspense } from "react";
 
-const VK_Auth: NextPage = (): ReactNode => {
+const VK_Auth: any = (): ReactNode => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const navigation = useRouter();
   const params = useSearchParams();
@@ -67,4 +68,6 @@ const VK_Auth: NextPage = (): ReactNode => {
   );
 };
 
-export default VK_Auth;
+const VKAuth: NextPage = (): ReactNode => <Suspense children={VK_Auth} />;
+
+export default VKAuth
