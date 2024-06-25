@@ -14,6 +14,7 @@ import PostUser from "@/serverActions/login";
 
 const AuthenticationPage: NextPage = (): ReactNode => {
   const [windowWidth, setWindowWidth] = useState<number>(0);
+
   const navigation = useRouter();
 
   const handleResize = () => {
@@ -51,16 +52,11 @@ const AuthenticationPage: NextPage = (): ReactNode => {
     );
   };
 
-  
-
   useEffect(() => {
-    if (VKID) {
-      VKID.Config.set({
-        app: 51962972,
-        redirectUrl:
-          "https://polite-rational-ringtail.ngrok-free.app/auth/vk-auth", // Your redirect URL
-      });
-    }
+    VKID.Config.set({
+      app: 51962972,
+      redirectUrl: "http://localhost:80/auth/vk-auth",
+    });
   }, []);
 
   return (
@@ -113,18 +109,8 @@ const AuthenticationPage: NextPage = (): ReactNode => {
           ) : null}
         </div>
       </div>
-      <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js" />
     </main>
   );
 };
 
 export default AuthenticationPage;
-
-// VKID.Config.set({
-//   app: 51962972, // Идентификатор приложения.
-//   redirectUrl: "https://polite-rational-ringtail.ngrok-free.app", // Адрес для перехода после авторизации.
-//   state: "AgwKkilmeZSDpCt3BclT", // Произвольная строка состояния приложения.
-// });
-
-// AgwKkilmeZSDpCt3BclT
-// 140bb906140bb906140bb9060b17135d5a1140b140bb90672728a1b1ab3bc7ab34dacbb

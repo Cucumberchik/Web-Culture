@@ -26,25 +26,28 @@ const PostUser = async (login_user: LoginUserType) => {
       (user) => user.user_id == login_user.user_id
     );
 
-    await axios.patch<GetUserType>(`${api}/${user?._id}`, {
-
-      token: randomToken,
-      date_token: login_user.date,
-    });
-
-    return randomToken;
+    try {
+      await axios.patch<GetUserType>(`${api}/${user?._id}`, {
+        token: randomToken,
+        date_token: login_user.date,
+      });
+      return { loading: false, error: false, randomToken };
+    } finally {
+    }
   } else {
-    await axios.post<GetUserType>(`${api}/`, {
-      displayName: login_user.displayName,
-      username: login_user.username,
-      user_id: login_user.user_id,
-      photoURL: login_user.photoURL,
-      provider: login_user.provider,
-      token: randomToken,
-      date_token: login_user.date,
-    });
-
-    return randomToken;
+    try {
+      await axios.post<GetUserType>(`${api}/`, {
+        displayName: login_user.displayName,
+        username: login_user.username,
+        user_id: login_user.user_id,
+        photoURL: login_user.photoURL,
+        provider: login_user.provider,
+        token: randomToken,
+        date_token: login_user.date,
+      });
+      return { loading: false, error: false, randomToken };
+    } finally {
+    }
   }
 };
 

@@ -1,27 +1,70 @@
 "use client";
-import GetToken from "@/serverActions/vk-login";
+import PostUser from "@/serverActions/login";
 import { NextPage } from "next";
-import { useSearchParams } from "next/navigation";
-import { ReactNode, useEffect } from "react";
+import Image from "next/image";
+import { useRouter, useSearchParams } from "next/navigation";
+import { ReactNode, useEffect, useState } from "react";
+import success from "@/icons/success.svg";
+import spiner from "@/icons/spiner.svg";
 
 const VK_Auth: NextPage = (): ReactNode => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const navigation = useRouter();
   const params = useSearchParams();
-  // const getAccesToken = async () => {
-  //   const id: any = params.get("code");
-  //   const data = await GetToken(id);
-  //   console.log(data);
-  // };
 
-  const obj = {
-    payload: params.get("payload")
-  }
-  console.log(JSON.parse(obj.payload));
-  
-  // useEffect(() => {
-    // getAccesToken();
-  // }, []);
+  const parseUser = JSON.parse(`${params.get("payload")}`).user;
 
-  return <></>;
+  const getCurrentYearAndMonth = (): string => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+
+    return `${year}${month.toString().padStart(2, "0")}`;
+  };
+
+  const yarnAndMonth = getCurrentYearAndMonth();
+
+  const user: LoginUserType = {
+    user_id: parseUser.id,
+    username: "user",
+    photoURL: parseUser.avatar,
+    provider: "VK",
+    displayName: `${parseUser.first_name} ${parseUser.last_name}`,
+    date: yarnAndMonth,
+    email: "",
+  };
+
+  const handleUserLogin = async () => {
+    const response = await PostUser(user);
+    localStorage.setItem("hashTKay", response.randomToken);
+    setIsLoading(response.loading);
+  };
+
+  useEffect(() => {
+    handleUserLogin();
+  }, []);
+
+  useEffect(() => {
+    if (!isLoading) navigation.replace("/");
+  }, [isLoading]);
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "50vh",
+      }}>
+      <p style={{ display: "flex", alignItems: "center" }}>
+        <Image
+          src={isLoading ? spiner : success}
+          alt="check"
+        />
+        {isLoading ? "Минутку..." : "Успешно"}
+      </p>
+    </div>
+  );
 };
 
 export default VK_Auth;
