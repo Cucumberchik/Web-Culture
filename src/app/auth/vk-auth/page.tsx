@@ -3,12 +3,11 @@ import PostUser from "@/serverActions/login";
 import { NextPage } from "next";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, Suspense, useEffect, useState } from "react";
 import success from "@/icons/success.svg";
 import spiner from "@/icons/spiner.svg";
-import { Suspense } from "react";
 
-const VK_Auth: any = (): ReactNode => {
+const VK_Auth: NextPage = (): ReactNode => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const navigation = useRouter();
   const params = useSearchParams();
@@ -48,26 +47,25 @@ const VK_Auth: any = (): ReactNode => {
   useEffect(() => {
     if (!isLoading) navigation.replace("/");
   }, [isLoading]);
-
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        minHeight: "50vh",
-      }}>
-      <p style={{ display: "flex", alignItems: "center" }}>
-        <Image
-          src={isLoading ? spiner : success}
-          alt="check"
-        />
-        {isLoading ? "Минутку..." : "Успешно"}
-      </p>
-    </div>
+    
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: "50vh",
+        }}>
+        <p style={{ display: "flex", alignItems: "center" }}>
+          <Image
+            src={isLoading ? spiner : success}
+            alt="check"
+          />
+          {isLoading ? "Минутку..." : "Успешно"}
+        </p>
+      </div>
+    
   );
 };
-
-const VKAuth: NextPage = (): ReactNode => <Suspense children={VK_Auth} />;
-
-export default VKAuth
+const ProviderVkAtuh = () => <Suspense><VK_Auth /></Suspense>
+export default ProviderVkAtuh;
