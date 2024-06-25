@@ -25,7 +25,7 @@ const CheckUser: NextPage<{ scss: any }> = ({ scss }): ReactNode => {
     handleGetUser();
   }, []);
 
-  return !token || !data ? (
+  return !token && !data ? (
     <Link
       type="button"
       className={scss.auth_link}

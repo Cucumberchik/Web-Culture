@@ -1,4 +1,3 @@
-import { auth } from "@/firebase/configure";
 import checkUser from "@/serverActions/checkUser";
 import { create } from "zustand";
 
