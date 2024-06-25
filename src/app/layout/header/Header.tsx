@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import CheckUser from "../checkUser";
 import { ReactNode } from "react";
+import checkUser from "@/serverActions/checkUser";
 
 const Header: NextPage = (): ReactNode => {
   const style: any = scss;

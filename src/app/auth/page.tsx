@@ -55,7 +55,7 @@ const AuthenticationPage: NextPage = (): ReactNode => {
   useEffect(() => {
     VKID.Config.set({
       app: 51962972,
-      redirectUrl: "https://web-culture.vercel.app/auth/vk-auth",
+      redirectUrl: "https://web-culture.vercel.app//auth/vk-auth",
     });
   }, []);
 

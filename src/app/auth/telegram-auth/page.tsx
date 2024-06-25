@@ -2,9 +2,13 @@
 import TelegramLoginButton from "@/components/TelegramLoginButton/TelegramLoginButton";
 import PostUser from "@/serverActions/login";
 import { NextPage } from "next";
-import { ReactNode } from "react";
+import { useRouter } from "next/navigation";
+import { ReactNode, useEffect, useState } from "react";
 
 const TelegramAuth: NextPage = (): ReactNode => {
+  const [isLoading, setIsLoadin] = useState<boolean>(true);
+  const navigation = useRouter();
+
   const botName: any = process.env.NEXT_PUBLIC_API_BOT_NAME;
 
   const handleLoginTelegramUser = async (user: any) => {
@@ -27,9 +31,16 @@ const TelegramAuth: NextPage = (): ReactNode => {
       email: "",
     };
 
-    const userToken: any = await PostUser(userObj);
-    localStorage.setItem("hashTKay", userToken);
+    const response: any = await PostUser(userObj);
+    setIsLoadin(response.loading);
+    localStorage.setItem("hashTKay", response.randomToken);
   };
+  useEffect(() => {
+    const storageToken = localStorage.getItem("hashTKay");
+    if (!isLoading || storageToken) {
+      navigation.replace("/");
+    }
+  }, [isLoading]);
 
   return (
     <main

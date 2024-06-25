@@ -2,13 +2,30 @@
 import useUser from "@/zustands/user";
 import { NextPage } from "next";
 import Link from "next/link";
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
-const CheckUser: NextPage<{scss:any}> = ({ scss }): ReactNode => {
-  const { checkUser, user } = useUser();
-  useEffect(checkUser, []);
+const CheckUser: NextPage<{ scss: any }> = ({ scss }): ReactNode => {
+  const { setUser, token } = useUser();
+  const [data, setData] = useState<boolean>(true);
+  const getCurrentYearAndMonth = (): string => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
 
-  return user == null ? (
+    return `${year}${month.toString().padStart(2, "0")}`;
+  };
+  const yarnAndMonth = getCurrentYearAndMonth();
+
+  const handleGetUser = async () => {
+    const response = await setUser(token, yarnAndMonth);
+
+    setData(response);
+  };
+  useEffect(() => {
+    handleGetUser();
+  }, []);
+
+  return !token || !data ? (
     <Link
       type="button"
       className={scss.auth_link}
